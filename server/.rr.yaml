@@ -1,0 +1,11 @@
+http:
+  address: 0.0.0.0:8000
+  workers:
+    command: "php vendor/bin/roadrunner-worker"
+    pool:
+      numWorkers: 16
+      destroyTimeout: 3
+      maxJobs: 0
+rpc:
+  enable: true
+  listen: tcp://:6001

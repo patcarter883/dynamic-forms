@@ -13,7 +13,7 @@
           round
           dense
           icon="close"
-          @click="$emit('update:show', false)"
+          @click="close"
         />
       </q-toolbar>
 
@@ -25,7 +25,8 @@
         />
         <my-input
           label="Field Label"
-          v-model="field.qlabel"
+          :value="field.qlabel"
+          @input="labelInput"
         />
         <q-checkbox
           v-model="field.tableDisplay"
@@ -49,18 +50,11 @@ export default {
     SchemaFieldValuesEditor
   },
   props: [
-    'value',
+    'field',
     'show'
   ],
   computed: {
-    field: {
-      get () {
-        return this.value
-      },
-      set (value) {
-        this.$emit('input', value)
-      }
-    }
+
   },
   data () {
     return {
@@ -71,6 +65,16 @@ export default {
         'qDateTime',
         'qCheckBox'
       ]
+    }
+  },
+  methods: {
+    close () {
+      this.$emit('update:show', false)
+    },
+    labelInput (value) {
+      console.log(value)
+      this.field.qlabel = value
+      this.field.model = value.replace(/\s+/g, '_').toLowerCase()
     }
   }
 }

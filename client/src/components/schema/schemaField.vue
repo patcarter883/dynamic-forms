@@ -2,7 +2,7 @@
   <div class="row cursor-pointer bg-grey-4 q-mb-sm q-pa-sm">
     {{ field.qlabel }}
     <schema-field-editor
-      v-model="field"
+      :field.sync="field"
       :show.sync="showEditor"
     />
     <q-space />
@@ -25,17 +25,10 @@ export default {
     schemaFieldEditor
   },
   props: [
-    'value'
+    'field'
   ],
   computed: {
-    field: {
-      get () {
-        return this.value
-      },
-      set (value) {
-        this.$emit('input', value)
-      }
-    }
+
   },
   data () {
     return {

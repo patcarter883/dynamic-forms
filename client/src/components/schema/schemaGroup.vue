@@ -23,7 +23,7 @@
         <schema-field
           v-for="(field, i) in group.fields"
           :key="i"
-          v-model="group.fields[i]"
+          :field.sync="group.fields[i]"
         />
       </draggable>
     </div>
@@ -41,17 +41,10 @@ export default {
     SchemaField
   },
   props: [
-    'value'
+    'group'
   ],
   computed: {
-    group: {
-      get () {
-        return this.value
-      },
-      set (value) {
-        this.$emit('input', value)
-      }
-    }
+
   },
   data () {
     return {}

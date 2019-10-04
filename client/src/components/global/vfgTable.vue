@@ -1,7 +1,6 @@
 <template>
   <div>
     <q-table
-      title="Treats"
       :data="data"
       :columns="columns"
       row-key="id"

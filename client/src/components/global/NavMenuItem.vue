@@ -3,10 +3,12 @@
     clickable
     tag="a"
     :to="to"
-    dark
   >
-    <q-item-section avatar>
-      <q-icon :name="icon" />
+    <q-item-section
+      avatar
+      v-if="$attrs.icon"
+    >
+      <q-icon :name="$attrs.icon" />
     </q-item-section>
     <q-item-section>
       <q-item-label>
@@ -20,8 +22,7 @@
 export default {
   name: 'NavMenuItem',
   props: [
-    'to',
-    'icon'
+    'to'
   ]
 }
 </script>

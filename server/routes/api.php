@@ -16,3 +16,11 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('record/{module}', 'Api\RecordController@index');
+Route::post('record/{module}', 'Api\RecordController@store');
+Route::get('record/{module}/{id}', 'Api\RecordController@show');
+Route::put('record/{module}', 'Api\RecordController@update');
+Route::delete('record/{module}', 'Api\RecordController@destroy');
+
+Route::apiResource('module', 'Api\ModuleController');

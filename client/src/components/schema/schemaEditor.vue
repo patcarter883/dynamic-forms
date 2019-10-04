@@ -21,7 +21,7 @@
       <schema-group
         v-for="(group, i) in schema.groups"
         :key="i"
-        v-model="schema.groups[i]"
+        :group.sync="schema.groups[i]"
       />
     </draggable>
   </div>

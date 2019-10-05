@@ -59,6 +59,7 @@ export default {
     } else {
       this.module = {
         name: '',
+        notification_list: [],
         schema: {
           groups: []
         }

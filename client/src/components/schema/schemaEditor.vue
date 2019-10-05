@@ -1,7 +1,7 @@
 <template>
   <div class="q-ma-sm">
-    <div class="row items-center q-py-md">
-      <div class="text-h5">
+    <div class="row items-center q-pb-md">
+      <div class="text-h6">
         Form Editor
       </div>
       <q-space />

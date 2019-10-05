@@ -5,7 +5,7 @@
   >
     <q-toolbar class="bg-grey-3">
       <q-toolbar-title shrink>
-        Record Detail
+        {{ module.item_name }} Detail
       </q-toolbar-title>
       <q-btn
         flat
@@ -55,7 +55,7 @@ export default {
     },
     async updateRecord () {
       let response = await this.$axios.put('record/' + this.module.record_collection + '/' + this.model._id, this.model)
-      this.module = response.data
+      this.model = response.data
     },
     async createRecord () {
       let response = await this.$axios.post('record/' + this.module.record_collection, this.model)

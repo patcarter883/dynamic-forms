@@ -51,8 +51,16 @@ export default {
       this.options.splice(index, 1)
     },
     addOption () {
-      let newOption = ''
-      this.options.push(newOption)
+      if (this.options === undefined) {
+        this.$emit('update:options', [])
+        this.$nextTick(() => {
+          let newOption = ''
+          this.options.push(newOption)
+        })
+      } else {
+        let newOption = ''
+        this.options.push(newOption)
+      }
     }
   }
 }

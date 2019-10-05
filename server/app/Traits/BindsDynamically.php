@@ -22,4 +22,20 @@ trait BindsDynamically
 
         return $model;
     }
+
+    /**
+     * Clone the model into a new, non-existing instance.
+     *
+     * @param  array|null  $except
+     * @return \Illuminate\Database\Eloquent\Model
+     * @throws \Exception
+     */
+    public function replicate(array $except = null)
+    {
+        // Overridden in order to allow for late table binding.
+        $instance = parent::replicate($except);
+        $instance->setTable($this->table);
+
+        return $instance;
+    }
 }

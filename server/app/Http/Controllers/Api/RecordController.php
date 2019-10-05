@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 
 class RecordController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -16,10 +17,9 @@ class RecordController extends Controller
      */
     public function index($module)
     {
-        $record = new Record();
-        $record->setTable($module);
+        $recordModel = new Record($module);
 
-        return RecordResource::collection($record->get());
+        return RecordResource::collection($recordModel->get());
     }
 
     /**
@@ -30,13 +30,11 @@ class RecordController extends Controller
      */
     public function store(Request $request, $module)
     {
-        $record = new Record();
-        $record->setTable($module);
-        $record->fill($request->all());
+        $recordModel = new Record($module);
+        $recordModel->fill($request->all());
+        $recordModel->save();
 
-        $record->save();
-
-        return new RecordResource($record);
+        return new RecordResource($recordModel);
     }
 
     /**
@@ -47,11 +45,9 @@ class RecordController extends Controller
      */
     public function show($module, $id)
     {
-        $record = new Record();
-        $record->setTable($module);
-        $record = $record->find($id);
+        $recordModel = new Record($module);
 
-        return new RecordResource($record);
+        return new RecordResource($recordModel->find($id));
     }
 
     /**
@@ -63,7 +59,13 @@ class RecordController extends Controller
      */
     public function update(Request $request, $module, $id)
     {
-        //
+        $recordModel = new Record($module);
+        $record = $recordModel->find($id);
+        $record->setTable($module);
+        $record->fill($request->all());
+        $record->save();
+
+        return new RecordResource($record);
     }
 
     /**

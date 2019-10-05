@@ -14,4 +14,10 @@ class Record extends Model
         'updated_at',
         'deleted_at'
     ];
+
+    function __construct($module)
+    {
+        parent::__construct();
+        $this->setTable($module);
+    }
 }

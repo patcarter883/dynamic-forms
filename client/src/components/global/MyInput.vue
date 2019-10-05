@@ -4,7 +4,7 @@
     :value="value"
     @input="$emit('input', $event)"
     v-bind="$attrs"
-    :class="'q-my-xs'"
+    :class="'q-my-xs q-mr-auto'"
   />
 </template>
 

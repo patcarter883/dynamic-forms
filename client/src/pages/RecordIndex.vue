@@ -12,7 +12,13 @@
         <q-tooltip>Add Record</q-tooltip>
       </q-btn>
       <q-space />
-      <q-btn round dense color="secondary" icon="print" @click="makePdf" />
+      <q-btn
+        round
+        dense
+        color="secondary"
+        icon="picture_as_pdf"
+        @click="makePdf"
+      />
     </q-toolbar>
     <vfg-data-table
       :models="models"

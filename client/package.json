@@ -1,9 +1,9 @@
 {
-  "name": "my-biz",
+  "name": "dynamic-forms",
   "version": "0.0.1",
   "description": "",
-  "productName": "Small Business Manager",
-  "cordovaId": "org.cordova.biz.my",
+  "productName": "Dynamic Forms",
+  "cordovaId": "org.cordova.forms.dynamic",
   "author": "Pat Carter <patcarter883@gmail.com>",
   "private": true,
   "scripts": {

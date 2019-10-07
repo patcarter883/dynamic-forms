@@ -42,40 +42,38 @@
 </template>
 
 <script>
-import SchemaFieldValuesEditor from './schemaFieldValuesEditor'
+import SchemaFieldValuesEditor from './schemaFieldValuesEditor';
 
 export default {
   name: 'SchemaFieldEditor',
   components: {
     SchemaFieldValuesEditor
   },
-  props: [
-    'field',
-    'show'
-  ],
-  computed: {
-
-  },
+  props: ['field', 'show'],
+  computed: {},
   data () {
     return {
       fieldTypeOptions: [
         'qInput',
+        'qTextarea',
         'qSelect',
         'qDate',
         'qDateTime',
-        'qCheckBox'
+        'qCheckbox'
       ]
-    }
+    };
   },
   methods: {
     close () {
-      this.$emit('update:show', false)
+      this.$emit('update:show', false);
     },
     labelInput (value) {
-      console.log(value)
-      this.field.qlabel = value
-      this.field.model = value.replace(/\s+/g, '_').toLowerCase()
+      this.field.qlabel = value;
+      this.field.model = value
+        .replace(/[^\w\s]|_/g, '')
+        .replace(/\s+/g, '_')
+        .toLowerCase();
     }
   }
-}
+};
 </script>

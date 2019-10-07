@@ -32,6 +32,8 @@ class ModuleController extends Controller
         $module->name = $request->name;
         $module->schema = $request->schema;
         $module->record_collection = strtolower(preg_replace('/\s+/', '_', $request->name));
+        $module->notification_list = $request->notification_list;
+        $module->item_name = $request->item_name;
 
         $module->save();
 

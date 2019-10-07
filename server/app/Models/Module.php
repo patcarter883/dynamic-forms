@@ -6,6 +6,10 @@ use Jenssegers\Mongodb\Eloquent\Model;
 
 class Module extends Model
 {
-    protected $primaryKey = '_id';
-    public $incrementing = false;
+    protected $guarded = [
+        '_id',
+        'created_at',
+        'updated_at',
+        'deleted_at'
+    ];
 }

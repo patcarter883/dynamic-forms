@@ -1,6 +1,6 @@
 <template>
   <q-dialog v-model="show">
-    <q-card>
+    <q-card v-if="field">
       <q-toolbar>
         <q-avatar>
           <img src="https://cdn.quasar.dev/logo/svg/quasar-logo.svg">
@@ -33,7 +33,7 @@
           label="Display in Index Table"
         />
         <schema-field-values-editor
-          v-if="field.type == 'qSelect'"
+          v-if="['qSelect', 'qTogglebutton'].includes(field.type)"
           :options.sync="field.values"
         />
       </q-card-section>
@@ -59,7 +59,9 @@ export default {
         'qSelect',
         'qDate',
         'qDateTime',
-        'qCheckbox'
+        'qCheckbox',
+        'qTogglebutton',
+        'qYesno'
       ]
     };
   },

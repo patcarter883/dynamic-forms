@@ -8,6 +8,7 @@
         flat
         round
         dense
+        :loading="saving"
         icon="save"
         @click="saveModule"
       />
@@ -20,42 +21,48 @@
 </template>
 
 <script>
-import ModuleEditor from 'components/module/moduleEditor'
+import ModuleEditor from 'components/module/moduleEditor';
 
 export default {
   name: 'ModuleDetailPage',
   components: {
     ModuleEditor
   },
-  props: [
-    'moduleId'
-  ],
+  props: ['moduleId'],
   data () {
     return {
-      module: null
-    }
+      module: null,
+      saving: false
+    };
   },
   methods: {
     async saveModule () {
       if (this.module._id) {
-        this.updateModule()
+        this.updateModule();
       } else {
-        this.createModule()
+        this.createModule();
       }
     },
     async updateModule () {
-      let response = await this.$axios.put('module/' + this.module._id, this.module)
-      this.module = response.data
+      this.saving = true;
+      let response = await this.$axios.put(
+        'module/' + this.module._id,
+        this.module
+      );
+      this.module = response.data;
+      this.saving = false;
     },
     async createModule () {
-      let response = await this.$axios.post('module', this.module)
-      this.$router.replace('/admin/module/' + response.data._id)
+      this.saving = true;
+      let response = await this.$axios.post('module', this.module);
+      this.saving = false;
+      this.$router.replace('/admin/module/' + response.data._id);
     }
   },
   async created () {
     if (this.moduleId) {
-      let response = await this.$axios.get('module/' + this.moduleId)
-      this.module = response.data
+      let response = await this.$axios.get('module/' + this.moduleId);
+      this.module = response.data;
     } else {
       this.module = {
         name: '',
@@ -63,8 +70,8 @@ export default {
         schema: {
           groups: []
         }
-      }
+      };
     }
   }
-}
+};
 </script>
